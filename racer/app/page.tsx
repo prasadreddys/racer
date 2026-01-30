@@ -1,23 +1,42 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { ConnectWallet } from "@coinbase/onchainkit/wallet";
+
 export default function Home() {
+  const car = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const move = (e:any) => {
+      if(!car.current) return;
+
+      let left = car.current.offsetLeft;
+
+      if(e.key === "ArrowLeft") car.current.style.left = left - 20 + "px";
+      if(e.key === "ArrowRight") car.current.style.left = left + 20 + "px";
+    };
+
+    window.addEventListener("keydown", move);
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-col items-center justify-center text-center py-32 px-16">
-        <h1 className="text-4xl font-bold text-black dark:text-zinc-50 mb-4">
-          Welcome to Base Racer
-        </h1>
-        <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
-          Get ready for the ultimate racing experience on Base.
-        </p>
-        <div className="mb-8 p-4 bg-yellow-100 dark:bg-yellow-900 rounded-lg">
-          <h2 className="text-xl font-semibold mb-2">Verify your mini app ownership</h2>
-          <p className="text-sm text-zinc-700 dark:text-zinc-300">
-            Get credit for your work and build user trust. If your Base Account isn't linked to a FID, you'll be prompted to connect it.
-          </p>
-        </div>
-        <button className="px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
-          Start Racing
-        </button>
-      </main>
+    <div style={{height:"100vh", background:"#333", position:"relative"}}>
+
+      <div style={{padding:10}}>
+        <ConnectWallet />
+      </div>
+
+      <div
+        ref={car}
+        style={{
+          width:50,
+          height:80,
+          background:"red",
+          position:"absolute",
+          bottom:40,
+          left:"45%"
+        }}
+      />
     </div>
   );
 }

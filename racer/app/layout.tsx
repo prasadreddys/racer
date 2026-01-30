@@ -1,3 +1,5 @@
+import { Providers } from "./providers";
+
 export default function RootLayout({
   children,
 }: {
@@ -7,10 +9,10 @@ export default function RootLayout({
     <html suppressHydrationWarning>
       <head>
         <title>Base Racer</title>
-        <meta name="base:app_id" content="697b0923748a9bde7c61ab56" />
+        <meta name="base:app_id" content="697c455ac0622780c63f65ff" />
       </head>
       <body suppressHydrationWarning>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

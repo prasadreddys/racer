@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning>
       <head>
-        <meta name="base:app_id" content="697b0923748a9bde7c61ab56" />
+        <meta name="base:app_id" content="697c455ac0622780c63f65ff" />
       </head>
       <body suppressHydrationWarning>
         <Providers>{children}</Providers>
